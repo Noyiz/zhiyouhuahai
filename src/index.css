@@ -1,0 +1,104 @@
+/* Global mobile H5 optimizations */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbars globally */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Prevent iOS text size adjust */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background-color: #f8f4ed;
+}
+
+.app {
+  background-color: #f8f4ed;
+  min-height: 100vh;
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  max-width: 480px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.peony-slider {
+  display: block;
+  padding: 0 20px;
+}
+
+.peony-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.peony-card {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fffdf8;
+  border: 1px solid rgba(126, 38, 57, 0.1);
+  box-shadow: 0 2px 12px rgba(126, 38, 57, 0.06);
+  transform: scale(1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  margin-bottom: 16px;
+}
+
+.peony-card:last-child {
+  margin-bottom: 0;
+}
+
+.peony-card.active {
+  border-color: rgba(126, 38, 57, 0.3);
+  box-shadow: 0 8px 30px rgba(126, 38, 57, 0.18);
+}
+
+.peony-dots {
+  display: none;
+}
+
+.peony-dot,
+.peony-dot.active {
+  display: none;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
