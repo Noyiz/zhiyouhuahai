@@ -1,0 +1,1943 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#7E2639" />
+    <meta
+      name="description"
+      content="智游花海 - 北京太阳宫天姿牡丹园 AI智能导览，拍照识花，科普牡丹十绝。"
+    />
+    <title>智游花海 · 天姿牡丹园 AI导览</title>
+    <!-- Preconnect to Unsplash CDN -->
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <!-- Google Fonts: Noto Serif SC for elegant Chinese display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/index.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- ── Hero Section ── -->
+      <section class="hero" style="position: relative; height: 100svh; overflow: hidden;">
+        <!-- Background image with blur -->
+        <div
+          style="
+            position: absolute;
+            inset: 0;
+            background-image: url('/assets/aigc/images/flower.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(2px) brightness(0.75);
+            transform: scale(1.05);
+          "
+        ></div>
+        <!-- Gradient overlay -->
+        <div
+          style="
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              to bottom,
+              rgba(126, 38, 57, 0.25) 0%,
+              rgba(0, 0, 0, 0.1) 40%,
+              rgba(0, 0, 0, 0.5) 100%
+            );
+          "
+        ></div>
+
+        <!-- Top bar -->
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <span
+            style="
+              color: rgba(248, 244, 237, 0.9);
+              font-size: 12px;
+              letter-spacing: 2px;
+              text-transform: uppercase;
+            "
+          >
+            天姿牡丹园
+          </span>
+          <span
+            style="
+              background: rgba(248, 244, 237, 0.15);
+              backdrop-filter: blur(8px);
+              color: rgba(248, 244, 237, 0.9);
+              font-size: 11px;
+              padding: 5px 12px;
+              border-radius: 20px;
+              border: 1px solid rgba(248, 244, 237, 0.3);
+            "
+          >
+            📍 北京太阳宫
+          </span>
+        </div>
+
+        <!-- Hero Text -->
+        <div
+          style="
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 32px;
+          "
+        >
+          <!-- Decorative line -->
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              margin-bottom: 16px;
+            "
+          >
+            <div
+              style="
+                width: 40px;
+                height: 1px;
+                background: #f7da94;
+                opacity: 0.8;
+              "
+            ></div>
+            <span
+              style="
+                color: #f7da94;
+                font-size: 11px;
+                letter-spacing: 3px;
+                opacity: 0.9;
+              "
+            >
+              AI互动导览
+            </span>
+            <div
+              style="
+                width: 40px;
+                height: 1px;
+                background: #f7da94;
+                opacity: 0.8;
+              "
+            ></div>
+          </div>
+
+          <h1
+            style="
+              font-family: 'STKaiti', 'STSong', 'KaiTi', 'SimSun', serif;
+              font-size: 52px;
+              font-weight: 700;
+              color: #fffdf8;
+              letter-spacing: 8px;
+              line-height: 1.2;
+              text-shadow: 0 2px 20px rgba(126, 38, 57, 0.6);
+              margin-bottom: 12px;
+            "
+          >
+            智游花海
+          </h1>
+
+          <p
+            style="
+              color: rgba(247, 218, 148, 0.95);
+              font-size: 14px;
+              letter-spacing: 4px;
+              font-weight: 300;
+              margin-bottom: 8px;
+            "
+          >
+            智能伴游 · AI互动导览
+          </p>
+
+          <p
+            style="
+              color: rgba(255, 255, 255, 0.7);
+              font-size: 12px;
+              letter-spacing: 1px;
+            "
+          >
+            北京太阳宫 · 天姿牡丹园
+          </p>
+
+          <!-- Scroll hint -->
+          <div
+            style="
+              position: absolute;
+              bottom: 32px;
+              left: 50%;
+              transform: translateX(-50%);
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 6px;
+            "
+          >
+            <span
+              style="
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 11px;
+                letter-spacing: 2px;
+              "
+            >
+              下滑探索
+            </span>
+            <div
+              style="
+                width: 1px;
+                height: 32px;
+                background: linear-gradient(
+                  to bottom,
+                  rgba(247, 218, 148, 0.8),
+                  transparent
+                );
+                animation: pulse 2s infinite;
+              "
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Section Divider: 园内导览 ── -->
+      <section
+        style="
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 28px 20px 20px;
+        "
+      >
+        <div
+          style="
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(
+              to right,
+              transparent,
+              rgba(126, 38, 57, 0.2)
+            );
+          "
+        ></div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(126, 38, 57, 0.06);
+            border: 1px solid rgba(126, 38, 57, 0.12);
+          "
+        >
+          <span style="font-size: 14px;">🗺️</span>
+          <span
+            style="
+              font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+              color: #7e2639;
+              font-size: 15px;
+              letter-spacing: 3px;
+              font-weight: 600;
+            "
+          >
+            园内导览
+          </span>
+        </div>
+        <div
+          style="
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(
+              to left,
+              transparent,
+              rgba(126, 38, 57, 0.2)
+            );
+          "
+        ></div>
+      </section>
+
+      <!-- ── Garden Map Section ── -->
+      <section style="padding: 0 20px 28px;">
+        <p
+          style="
+            color: #6b4e55;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            text-align: center;
+          "
+        >
+          双指捏合可缩放查看 · 滑动浏览全园路线
+        </p>
+        <div
+          style="
+            border-radius: 12px;
+            overflow: scroll;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid rgba(126, 38, 57, 0.15);
+            box-shadow: 0 4px 20px rgba(126, 38, 57, 0.1);
+            max-height: 280px;
+            position: relative;
+          "
+        >
+          <img
+            src="/assets/aigc/images/map.webp"
+            alt="天姿牡丹园导览图"
+            style="
+              width: 100%;
+              height: 100%;
+              display: block;
+              object-fit: contain;
+            "
+          />
+        </div>
+        <p
+          style="
+            color: #6b4e55;
+            font-size: 11px;
+            text-align: center;
+            margin-top: 10px;
+            opacity: 0.7;
+          "
+        >
+          天姿牡丹园 · 全园游览路线图
+        </p>
+      </section>
+
+      <!-- ── Identify Flower Section ── -->
+      <section style="padding: 0 20px 32px;">
+        <div
+          style="
+            border-radius: 16px;
+            background: linear-gradient(
+              135deg,
+              rgba(126, 38, 57, 0.08) 0%,
+              rgba(159, 176, 132, 0.08) 100%
+            );
+            border: 1px solid rgba(126, 38, 57, 0.12);
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+          "
+        >
+          <a
+            href="https://shihua.example.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="text-decoration: none; flex-shrink: 0;"
+          >
+            <div
+              style="
+                width: 72px;
+                height: 72px;
+                border-radius: 50%;
+                background: linear-gradient(
+                  135deg,
+                  rgba(126, 38, 57, 0.75) 0%,
+                  rgba(190, 60, 90, 0.75) 100%
+                );
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 2px solid rgba(247, 218, 148, 0.5);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                box-shadow:
+                  0 8px 32px rgba(126, 38, 57, 0.3),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                cursor: pointer;
+                transition: transform 0.2s ease;
+              "
+            >
+              <span style="font-size: 24px; line-height: 1;">📷</span>
+              <span
+                style="
+                  color: #f7da94;
+                  font-size: 9px;
+                  margin-top: 4px;
+                  letter-spacing: 1px;
+                "
+              >
+                识花
+              </span>
+            </div>
+          </a>
+          <div>
+            <h3
+              style="
+                font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+                color: #7e2639;
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 6px;
+                letter-spacing: 2px;
+              "
+            >
+              拍照识花
+            </h3>
+            <p
+              style="
+                color: #6b4e55;
+                font-size: 13px;
+                line-height: 1.6;
+              "
+            >
+              拍摄园内牡丹，AI 即刻告知品种名称、花期与养护知识。
+            </p>
+            <a
+              href="#小程序://拍照识花卉君/4pe4TUaE3iHOZTf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="
+                display: inline-block;
+                margin-top: 10px;
+                color: #7e2639;
+                font-size: 12px;
+                letter-spacing: 1px;
+                border-bottom: 1px solid rgba(126, 38, 57, 0.4);
+                text-decoration: none;
+              "
+            >
+              立即体验 →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Section Divider: 牡丹十绝 ── -->
+      <section
+        style="
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 28px 20px 20px;
+        "
+      >
+        <div
+          style="
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(
+              to right,
+              transparent,
+              rgba(126, 38, 57, 0.2)
+            );
+          "
+        ></div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(126, 38, 57, 0.06);
+            border: 1px solid rgba(126, 38, 57, 0.12);
+          "
+        >
+          <span style="font-size: 14px;">🌸</span>
+          <span
+            style="
+              font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+              color: #7e2639;
+              font-size: 15px;
+              letter-spacing: 3px;
+              font-weight: 600;
+            "
+          >
+            牡丹十绝
+          </span>
+        </div>
+        <div
+          style="
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(
+              to left,
+              transparent,
+              rgba(126, 38, 57, 0.2)
+            );
+          "
+        ></div>
+      </section>
+
+      <!-- ── Peony Slider Section ── -->
+      <section style="padding-bottom: 40px;">
+        <p
+          style="
+            color: #6b4e55;
+            font-size: 13px;
+            line-height: 1.6;
+            padding: 0 20px 16px;
+            text-align: center;
+          "
+        >
+          左右滑动，探索天姿牡丹园十大名品
+        </p>
+
+        <div class="peony-slider">
+          <!-- Card 1 魏紫 -->
+          <article class="peony-card active">
+            <div style="position: relative; height: 200px; overflow: hidden;">
+              <img
+                src="/assets/aigc/images/weizi.png"
+                alt="魏紫"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                  transition: transform 0.4s ease;
+                "
+                loading="lazy"
+              />
+              <div
+                style="
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  height: 80px;
+                  background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.5),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 12px;
+                  left: 12px;
+                  background: rgba(0, 0, 0, 0.4);
+                  backdrop-filter: blur(8px);
+                  color: #f7da94;
+                  font-size: 10px;
+                  padding: 3px 10px;
+                  border-radius: 10px;
+                  border: 1px solid rgba(247, 218, 148, 0.4);
+                "
+              >
+                👑 花后
+              </div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 12px;
+                  right: 12px;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  background: #7e2639;
+                  border: 2px solid rgba(255, 255, 255, 0.8);
+                  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  left: 12px;
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 10px;
+                "
+              >
+                01 / 10
+              </div>
+            </div>
+            <div style="padding: 16px;">
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <h3
+                  style="
+                    font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+                    color: #7e2639;
+                    font-size: 22px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                  "
+                >
+                  魏紫
+                </h3>
+                <span
+                  style="
+                    color: #9fb084;
+                    font-size: 12px;
+                    font-style: italic;
+                  "
+                >
+                  花后
+                </span>
+              </div>
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  margin-bottom: 10px;
+                  background: rgba(159, 176, 132, 0.15);
+                  padding: 2px 8px;
+                  border-radius: 8px;
+                "
+              >
+                <span
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #7e2639;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                ></span>
+                <span style="color: #6b4e55; font-size: 11px;">紫红色</span>
+              </div>
+              <p
+                style="
+                  color: #6b4e55;
+                  font-size: 13px;
+                  line-height: 1.65;
+                "
+              >
+                重瓣丰满，紫红色，牡丹之极品。花瓣层层叠叠，色泽深邃如紫宝石，被誉为
+                “花后”。
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 2 姚黄 -->
+          <article class="peony-card">
+            <div style="position: relative; height: 200px; overflow: hidden;">
+              <img
+                src="/assets/aigc/images/yaohuang.png"
+                alt="姚黄"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                  transition: transform 0.4s ease;
+                "
+                loading="lazy"
+              />
+              <div
+                style="
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  height: 80px;
+                  background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.5),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 12px;
+                  left: 12px;
+                  background: rgba(0, 0, 0, 0.4);
+                  backdrop-filter: blur(8px);
+                  color: #f7da94;
+                  font-size: 10px;
+                  padding: 3px 10px;
+                  border-radius: 10px;
+                  border: 1px solid rgba(247, 218, 148, 0.4);
+                "
+              >
+                ⚜️ 花王
+              </div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 12px;
+                  right: 12px;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  background: #c8960a;
+                  border: 2px solid rgba(255, 255, 255, 0.8);
+                  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  left: 12px;
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 10px;
+                "
+              >
+                02 / 10
+              </div>
+            </div>
+            <div style="padding: 16px;">
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <h3
+                  style="
+                    font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+                    color: #7e2639;
+                    font-size: 22px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                  "
+                >
+                  姚黄
+                </h3>
+                <span
+                  style="
+                    color: #9fb084;
+                    font-size: 12px;
+                    font-style: italic;
+                  "
+                >
+                  花王
+                </span>
+              </div>
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  margin-bottom: 10px;
+                  background: rgba(159, 176, 132, 0.15);
+                  padding: 2px 8px;
+                  border-radius: 8px;
+                "
+              >
+                <span
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #c8960a;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                ></span>
+                <span style="color: #6b4e55; font-size: 11px;">鹅黄色</span>
+              </div>
+              <p
+                style="
+                  color: #6b4e55;
+                  font-size: 13px;
+                  line-height: 1.65;
+                "
+              >
+                鹅黄色，瓣质厚实，自带王者风范。花开时如黄金铸就，雍容华贵，号称
+                “花王”。
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 3 豆绿 -->
+          <article class="peony-card">
+            <div style="position: relative; height: 200px; overflow: hidden;">
+              <img
+                src="/assets/aigc/images/doulv.png"
+                alt="豆绿"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                  transition: transform 0.4s ease;
+                "
+                loading="lazy"
+              />
+              <div
+                style="
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  height: 80px;
+                  background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.5),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 12px;
+                  left: 12px;
+                  background: rgba(0, 0, 0, 0.4);
+                  backdrop-filter: blur(8px);
+                  color: #f7da94;
+                  font-size: 10px;
+                  padding: 3px 10px;
+                  border-radius: 10px;
+                  border: 1px solid rgba(247, 218, 148, 0.4);
+                "
+              >
+                💎 稀世珍品
+              </div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 12px;
+                  right: 12px;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  background: #9fb084;
+                  border: 2px solid rgba(255, 255, 255, 0.8);
+                  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  left: 12px;
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 10px;
+                "
+              >
+                03 / 10
+              </div>
+            </div>
+            <div style="padding: 16px;">
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <h3
+                  style="
+                    font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+                    color: #7e2639;
+                    font-size: 22px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                  "
+                >
+                  豆绿
+                </h3>
+                <span
+                  style="
+                    color: #9fb084;
+                    font-size: 12px;
+                    font-style: italic;
+                  "
+                >
+                  稀世绿牡丹
+                </span>
+              </div>
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  margin-bottom: 10px;
+                  background: rgba(159, 176, 132, 0.15);
+                  padding: 2px 8px;
+                  border-radius: 8px;
+                "
+              >
+                <span
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #9fb084;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                ></span>
+                <span style="color: #6b4e55; font-size: 11px;">豆绿色</span>
+              </div>
+              <p
+                style="
+                  color: #6b4e55;
+                  font-size: 13px;
+                  line-height: 1.65;
+                "
+              >
+                唯一绿色品种，初开如豆，清爽脱俗。花瓣呈淡绿色，极为罕见，如翡翠般珍贵。
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 4 赵粉 -->
+          <article class="peony-card">
+            <div style="position: relative; height: 200px; overflow: hidden;">
+              <img
+                src="/assets/aigc/images/zhaofen.png"
+                alt="赵粉"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                  transition: transform 0.4s ease;
+                "
+                loading="lazy"
+              />
+              <div
+                style="
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  height: 80px;
+                  background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.5),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 12px;
+                  left: 12px;
+                  background: rgba(0, 0, 0, 0.4);
+                  backdrop-filter: blur(8px);
+                  color: #f7da94;
+                  font-size: 10px;
+                  padding: 3px 10px;
+                  border-radius: 10px;
+                  border: 1px solid rgba(247, 218, 148, 0.4);
+                "
+              >
+                🌸 粉色之冠
+              </div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 12px;
+                  right: 12px;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  background: #e8aebf;
+                  border: 2px solid rgba(255, 255, 255, 0.8);
+                  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  left: 12px;
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 10px;
+                "
+              >
+                04 / 10
+              </div>
+            </div>
+            <div style="padding: 16px;">
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <h3
+                  style="
+                    font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+                    color: #7e2639;
+                    font-size: 22px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                  "
+                >
+                  赵粉
+                </h3>
+                <span
+                  style="
+                    color: #9fb084;
+                    font-size: 12px;
+                    font-style: italic;
+                  "
+                >
+                  粉色之冠
+                </span>
+              </div>
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  margin-bottom: 10px;
+                  background: rgba(159, 176, 132, 0.15);
+                  padding: 2px 8px;
+                  border-radius: 8px;
+                "
+              >
+                <span
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #e8aebf;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                ></span>
+                <span style="color: #6b4e55; font-size: 11px;">粉嫩色</span>
+              </div>
+              <p
+                style="
+                  color: #6b4e55;
+                  font-size: 13px;
+                  line-height: 1.65;
+                "
+              >
+                花瓣层叠，色泽粉嫩娇艳。花开如霞，清秀动人，是最受游客喜爱的品种之一。
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 5 二乔 -->
+          <article class="peony-card">
+            <div style="position: relative; height: 200px; overflow: hidden;">
+              <img
+                src="/assets/aigc/images/erqiao.png"
+                alt="二乔"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                  transition: transform 0.4s ease;
+                "
+                loading="lazy"
+              />
+              <div
+                style="
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  height: 80px;
+                  background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.5),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 12px;
+                  left: 12px;
+                  background: rgba(0, 0, 0, 0.4);
+                  backdrop-filter: blur(8px);
+                  color: #f7da94;
+                  font-size: 10px;
+                  padding: 3px 10px;
+                  border-radius: 10px;
+                  border: 1px solid rgba(247, 218, 148, 0.4);
+                "
+              >
+                ✨ 双色奇观
+              </div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 12px;
+                  right: 12px;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  background: #9b59b6;
+                  border: 2px solid rgba(255, 255, 255, 0.8);
+                  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  left: 12px;
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 10px;
+                "
+              >
+                05 / 10
+              </div>
+            </div>
+            <div style="padding: 16px;">
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <h3
+                  style="
+                    font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+                    color: #7e2639;
+                    font-size: 22px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                  "
+                >
+                  二乔
+                </h3>
+                <span
+                  style="
+                    color: #9fb084;
+                    font-size: 12px;
+                    font-style: italic;
+                  "
+                >
+                  一花双色
+                </span>
+              </div>
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  margin-bottom: 10px;
+                  background: rgba(159, 176, 132, 0.15);
+                  padding: 2px 8px;
+                  border-radius: 8px;
+                "
+              >
+                <span
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #9b59b6;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                ></span>
+                <span style="color: #6b4e55; font-size: 11px;"
+                  >紫红与粉白</span
+                >
+              </div>
+              <p
+                style="
+                  color: #6b4e55;
+                  font-size: 13px;
+                  line-height: 1.65;
+                "
+              >
+                同朵花拥有紫红与粉白两色，并蒂而开，如古典美人二乔，美艳双绝。
+              </p>
+            </div>
+          </article>
+<!-- 
+          Card 6 黑花魁
+          <article class="peony-card">
+            <div style="position: relative; height: 200px; overflow: hidden;">
+              <img
+                src="https://images.unsplash.com/photo-1666613757841-22ba47e34a02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400"
+                alt="黑花魁"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  transition: transform 0.4s ease;
+                "
+                loading="lazy"
+              />
+              <div
+                style="
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  height: 80px;
+                  background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.5),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 12px;
+                  left: 12px;
+                  background: rgba(0, 0, 0, 0.4);
+                  backdrop-filter: blur(8px);
+                  color: #f7da94;
+                  font-size: 10px;
+                  padding: 3px 10px;
+                  border-radius: 10px;
+                  border: 1px solid rgba(247, 218, 148, 0.4);
+                "
+              >
+                🖤 神秘之花
+              </div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 12px;
+                  right: 12px;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  background: #2d1b2e;
+                  border: 2px solid rgba(255, 255, 255, 0.8);
+                  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  left: 12px;
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 10px;
+                "
+              >
+                06 / 10
+              </div>
+            </div>
+            <div style="padding: 16px;">
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <h3
+                  style="
+                    font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+                    color: #7e2639;
+                    font-size: 22px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                  "
+                >
+                  黑花魁 -->
+                <!-- </h3>
+                <span
+                  style="
+                    color: #9fb084;
+                    font-size: 12px;
+                    font-style: italic;
+                  "
+                >
+                  墨色奇珍
+                </span>
+              </div>
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  margin-bottom: 10px;
+                  background: rgba(159, 176, 132, 0.15);
+                  padding: 2px 8px;
+                  border-radius: 8px;
+                "
+              >
+                <span
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #2d1b2e;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                ></span>
+                <span style="color: #6b4e55; font-size: 11px;">墨色</span>
+              </div>
+              <p
+                style="
+                  color: #6b4e55;
+                  font-size: 13px;
+                  line-height: 1.65;
+                "
+              >
+                色深如墨，质感如绸缎，极具神秘感。深沉的色调让人沉醉，是牡丹中最具魅力的品种。
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 7 白雪塔 -->
+          <article class="peony-card">
+            <div style="position: relative; height: 200px; overflow: hidden;">
+              <img
+                src="https://images.unsplash.com/photo-1742796608356-860896a87515?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400"
+                alt="白雪塔"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  transition: transform 0.4s ease;
+                "
+                loading="lazy"
+              />
+              <div
+                style="
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  height: 80px;
+                  background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.5),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 12px;
+                  left: 12px;
+                  background: rgba(0, 0, 0, 0.4);
+                  backdrop-filter: blur(8px);
+                  color: #f7da94;
+                  font-size: 10px;
+                  padding: 3px 10px;
+                  border-radius: 10px;
+                  border: 1px solid rgba(247, 218, 148, 0.4);
+                "
+              > -->
+                <!-- ❄️ 玉洁冰清
+              </div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 12px;
+                  right: 12px;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  background: #f5f0e8;
+                  border: 2px solid rgba(255, 255, 255, 0.8);
+                  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  left: 12px;
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 10px;
+                "
+              >
+                07 / 10
+              </div>
+            </div>
+            <div style="padding: 16px;">
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <h3
+                  style="
+                    font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+                    color: #7e2639;
+                    font-size: 22px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                  "
+                >
+                  白雪塔
+                </h3>
+                <span
+                  style="
+                    color: #9fb084;
+                    font-size: 12px;
+                    font-style: italic;
+                  "
+                >
+                  玉洁冰清
+                </span>
+              </div>
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  margin-bottom: 10px;
+                  background: rgba(159, 176, 132, 0.15);
+                  padding: 2px 8px;
+                  border-radius: 8px;
+                "
+              >
+                <span
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #f5f0e8;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                ></span>
+                <span style="color: #6b4e55; font-size: 11px;">雪白色</span>
+              </div>
+              <p
+                style="
+                  color: #6b4e55;
+                  font-size: 13px;
+                  line-height: 1.65;
+                "
+              >
+                花瓣洁白如雪，层层堆叠如高塔。纯洁素雅，宛如冰雪中的仙子，清丽脱俗。
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 8 洛阳红 -->
+          <article class="peony-card">
+            <div style="position: relative; height: 200px; overflow: hidden;">
+              <img
+                src="https://images.unsplash.com/photo-1595876151783-f44f4a573295?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400"
+                alt="洛阳红"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  transition: transform 0.4s ease;
+                "
+                loading="lazy"
+              />
+              <div
+                style="
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  height: 80px;
+                  background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.5),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 12px;
+                  left: 12px;
+                  background: rgba(0, 0, 0, 0.4);
+                  backdrop-filter: blur(8px);
+                  color: #f7da94;
+                  font-size: 10px;
+                  padding: 3px 10px;
+                  border-radius: 10px;
+                  border: 1px solid rgba(247, 218, 148, 0.4);
+                "
+              >
+                🔥 生命之火
+              </div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 12px;
+                  right: 12px;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  background: #c0392b;
+                  border: 2px solid rgba(255, 255, 255, 0.8);
+                  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  left: 12px;
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 10px;
+                "
+              >
+                08 / 10
+              </div>
+            </div>
+            <div style="padding: 16px;">
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <h3
+                  style="
+                    font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+                    color: #7e2639;
+                    font-size: 22px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                  "
+                >
+                  洛阳红
+                </h3>
+                <span
+                  style="
+                    color: #9fb084;
+                    font-size: 12px;
+                    font-style: italic;
+                  "
+                >
+                  生命之火
+                </span>
+              </div>
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  margin-bottom: 10px;
+                  background: rgba(159, 176, 132, 0.15);
+                  padding: 2px 8px;
+                  border-radius: 8px;
+                "
+              >
+                <span
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #c0392b;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                ></span>
+                <span style="color: #6b4e55; font-size: 11px;">火红色</span>
+              </div>
+              <p
+                style="
+                  color: #6b4e55;
+                  font-size: 13px;
+                  line-height: 1.65;
+                "
+              >
+                火红夺目，是生命力最旺盛的经典种。盛开时如燃烧的火焰，热烈奔放，充满生机。
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 9 青龙卧墨池 -->
+          <article class="peony-card">
+            <div style="position: relative; height: 200px; overflow: hidden;">
+              <img
+                src="https://images.unsplash.com/photo-1709039223422-4983b30a70a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400"
+                alt="青龙卧墨池"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  transition: transform 0.4s ease;
+                "
+                loading="lazy"
+              />
+              <div
+                style="
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  height: 80px;
+                  background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.5),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 12px;
+                  left: 12px;
+                  background: rgba(0, 0, 0, 0.4);
+                  backdrop-filter: blur(8px);
+                  color: #f7da94;
+                  font-size: 10px;
+                  padding: 3px 10px;
+                  border-radius: 10px;
+                  border: 1px solid rgba(247, 218, 148, 0.4);
+                "
+              >
+                🐉 神韵深远
+              </div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 12px;
+                  right: 12px;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  background: #1a3a2a;
+                  border: 2px solid rgba(255, 255, 255, 0.8);
+                  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  left: 12px;
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 10px;
+                "
+              >
+                09 / 10
+              </div>
+            </div>
+            <div style="padding: 16px;">
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <h3
+                  style="
+                    font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+                    color: #7e2639;
+                    font-size: 22px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                  "
+                >
+                  青龙卧墨池
+                </h3>
+                <span
+                  style="
+                    color: #9fb084;
+                    font-size: 12px;
+                    font-style: italic;
+                  "
+                >
+                  意境深远
+                </span>
+              </div>
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  margin-bottom: 10px;
+                  background: rgba(159, 176, 132, 0.15);
+                  padding: 2px 8px;
+                  border-radius: 8px;
+                "
+              >
+                <span
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #1a3a2a;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                ></span>
+                <span style="color: #6b4e55; font-size: 11px;">墨紫色</span>
+              </div>
+              <p
+                style="
+                  color: #6b4e55;
+                  font-size: 13px;
+                  line-height: 1.65;
+                "
+              >
+                墨紫色花瓣中心藏着青色雌蕊，宛如青龙卧于墨池之中，意境幽远，充满禅意。
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 10 御衣黄 -->
+          <article class="peony-card">
+            <div style="position: relative; height: 200px; overflow: hidden;">
+              <img
+                src="https://images.unsplash.com/photo-1647292399603-7282eb584573?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400"
+                alt="御衣黄"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  transition: transform 0.4s ease;
+                "
+                loading="lazy"
+              />
+              <div
+                style="
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  height: 80px;
+                  background: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.5),
+                    transparent
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  top: 12px;
+                  left: 12px;
+                  background: rgba(0, 0, 0, 0.4);
+                  backdrop-filter: blur(8px);
+                  color: #f7da94;
+                  font-size: 10px;
+                  padding: 3px 10px;
+                  border-radius: 10px;
+                  border: 1px solid rgba(247, 218, 148, 0.4);
+                "
+              >
+                👘 皇家御品
+              </div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 12px;
+                  right: 12px;
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  background: #b8860b;
+                  border: 2px solid rgba(255, 255, 255, 0.8);
+                  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: 10px;
+                  left: 12px;
+                  color: rgba(255, 255, 255, 0.8);
+                  font-size: 10px;
+                "
+              >
+                10 / 10
+              </div>
+            </div>
+            <div style="padding: 16px;">
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: 8px;
+                  margin-bottom: 8px;
+                "
+              >
+                <h3
+                  style="
+                    font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+                    color: #7e2639;
+                    font-size: 22px;
+                    font-weight: 700;
+                    letter-spacing: 2px;
+                  "
+                >
+                  御衣黄
+                </h3>
+                <span
+                  style="
+                    color: #9fb084;
+                    font-size: 12px;
+                    font-style: italic;
+                  "
+                >
+                  皇家贵气
+                </span>
+              </div>
+              <div
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  margin-bottom: 10px;
+                  background: rgba(159, 176, 132, 0.15);
+                  padding: 2px 8px;
+                  border-radius: 8px;
+                "
+              >
+                <span
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: #b8860b;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                ></span>
+                <span style="color: #6b4e55; font-size: 11px;">黄中带绿</span>
+              </div>
+              <p
+                style="
+                  color: #6b4e55;
+                  font-size: 13px;
+                  line-height: 1.65;
+                "
+              >
+                黄中带绿，色如古代皇帝的御用丝绸。雍容华贵，尊贵典雅，是皇家御苑的常客。
+              </p>
+            </div>
+          </article>
+
+          <div style="min-width: 8px; flex-shrink: 0;"></div> -->
+        </div>
+
+        <!-- Dot pagination -->
+        <div class="peony-dots">
+          <button class="peony-dot active" data-index="0" aria-label="魏紫"></button>
+          <button class="peony-dot" data-index="1" aria-label="姚黄"></button>
+          <button class="peony-dot" data-index="2" aria-label="豆绿"></button>
+          <button class="peony-dot" data-index="3" aria-label="赵粉"></button>
+          <button class="peony-dot" data-index="4" aria-label="二乔"></button>
+          <button class="peony-dot" data-index="5" aria-label="黑花魁"></button>
+          <button class="peony-dot" data-index="6" aria-label="白雪塔"></button>
+          <button class="peony-dot" data-index="7" aria-label="洛阳红"></button>
+          <button class="peony-dot" data-index="8" aria-label="青龙卧墨池"></button>
+          <button class="peony-dot" data-index="9" aria-label="御衣黄"></button>
+        </div>
+      </section>
+
+      <!-- ── Footer ── -->
+      <footer
+        style="
+          background: linear-gradient(to bottom, #f8f4ed 0%, rgba(126, 38, 57, 0.05) 100%);
+          border-top: 1px solid rgba(126, 38, 57, 0.1);
+          padding: 32px 24px 48px;
+          text-align: center;
+        "
+      >
+        <div
+          style="
+            font-family: 'STKaiti', 'STSong', 'KaiTi', serif;
+            color: #7e2639;
+            font-size: 20px;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+          "
+        >
+          智游花海
+        </div>
+        <p
+          style="
+            color: #6b4e55;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-bottom: 4px;
+          "
+        >
+          北京市朝阳区 · 太阳宫 · 天姿牡丹园
+        </p>
+        <p style="color: #6b4e55; font-size: 12px; opacity: 0.6;">
+          花期：每年4月中旬—5月初
+        </p>
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+          "
+        >
+          <span
+            style="
+              color: #7e2639;
+              font-size: 12px;
+              padding: 5px 12px;
+              border-radius: 20px;
+              border: 1px solid rgba(126, 38, 57, 0.2);
+              cursor: pointer;
+            "
+            >园区简介</span
+          >
+          <span
+            style="
+              color: #7e2639;
+              font-size: 12px;
+              padding: 5px 12px;
+              border-radius: 20px;
+              border: 1px solid rgba(126, 38, 57, 0.2);
+              cursor: pointer;
+            "
+            >交通指引</span
+          >
+          <span
+            style="
+              color: #7e2639;
+              font-size: 12px;
+              padding: 5px 12px;
+              border-radius: 20px;
+              border: 1px solid rgba(126, 38, 57, 0.2);
+              cursor: pointer;
+            "
+            >联系我们</span
+          >
+        </div>
+        <p
+          style="
+            color: #6b4e55;
+            font-size: 11px;
+            margin-top: 24px;
+            opacity: 0.5;
+          "
+        >
+          © 2026 智游花海 · AI智能导览
+        </p>
+      </footer>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
