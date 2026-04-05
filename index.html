@@ -182,22 +182,27 @@
             北京太阳宫 · 天姿牡丹园
           </p>
 
-          <!-- Logo images: horizontal flowing marquee -->
+          <!-- Logo images: stacked vertically -->
           <div
             style="
-              overflow: hidden;
-              width: 260px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: -40px;
               margin-top: 8px;
-              -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
-              mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
             "
           >
-            <div style="display: flex; align-items: center; gap: 48px; width: max-content; animation: logoMarquee 8s linear infinite;">
-              <img src="/assets/aigc/images/logo.png" alt="天姿牡丹" style="height: 100px; flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));" />
-              <img src="/assets/aigc/images/院徽.png" alt="院徽" style="height: 90px; flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));" />
-              <img src="/assets/aigc/images/logo.png" alt="天姿牡丹" style="height: 100px; flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));" />
-              <img src="/assets/aigc/images/院徽.png" alt="院徽" style="height: 90px; flex-shrink: 0; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));" />
-            </div>
+            <img
+              src="/assets/aigc/images/logo.png"
+              alt="天姿牡丹"
+              style="height: 90px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));"
+            />
+            <img
+            src="/assets/aigc/images/院徽-白色.png"
+            alt="院徽"
+            style="position: relative; top: -20px; height: 50px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));"
+          />
+          
           </div>
 
           <!-- Scroll hint -->
