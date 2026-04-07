@@ -2285,7 +2285,7 @@
 
           // 第二步：生成写真图片
           document.querySelector('#imageLoading p').textContent = 'AI 正在生成写真，请稍候…';
-          const prompt = `帮我生成图片：人物特征描述：${personDesc}。根据该人物的年龄、性别、气质等特征，生成其与某种或某些品种和颜色的牡丹花的写真照，为其从唐制、宋制、明制汉服中选择其一，定制一整套服装、古风发型、头饰、耳饰、妆容、动作、手持物等，同时更换新的更合适的古风场景。要求具备一定的美学水平，画面和谐生动。8K分辨率，6寸照片。`;
+          const prompt = `帮我生成图片：人物特征描述：${personDesc}。根据该人物的年龄、性别、气质等特征，生成其与某种或某些品种和颜色的牡丹花的写真照，为其从唐制、宋制、明制汉服中选择其一，定制一整套服装、古风发型、头饰、耳饰、妆容、动作、手持物等，同时更换新的更合适的古风场景，且一定不能更改人物的五官特征及其分布。要求具备一定的美学水平，画面和谐生动。8K分辨率，6寸照片。`;
           const genResp = await fetch('https://ark.cn-beijing.volces.com/api/v3/images/generations', {
             method: 'POST',
             headers: {
