@@ -1,57 +1,43 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const slider = document.querySelector('.peony-slider');
-  if (!slider) return;
+  function initSlider(sliderClass, cardClass, dotClass) {
+    const slider = document.querySelector('.' + sliderClass);
+    if (!slider) return;
 
-  const cards = Array.from(slider.querySelectorAll('.peony-card'));
-  const dots = Array.from(document.querySelectorAll('.peony-dot'));
+    const cards = Array.from(slider.querySelectorAll('.' + cardClass));
+    const dots = Array.from(document.querySelectorAll('.' + dotClass));
 
-  function setActive(index) {
-    cards.forEach((card, i) => {
-      if (i === index) {
-        card.classList.add('active');
-      } else {
-        card.classList.remove('active');
-      }
-    });
+    function setActive(index) {
+      cards.forEach((card, i) => card.classList.toggle('active', i === index));
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    }
 
-    dots.forEach((dot, i) => {
-      if (i === index) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
-  }
+    function getCardWidth() {
+      const firstCard = cards[0];
+      if (!firstCard) return slider.clientWidth;
+      const rect = firstCard.getBoundingClientRect();
+      const marginRight = parseFloat(window.getComputedStyle(firstCard).marginRight || '0');
+      return rect.width + marginRight + 12;
+    }
 
-  function getCardWidth() {
-    const firstCard = cards[0];
-    if (!firstCard) return slider.clientWidth;
-    const rect = firstCard.getBoundingClientRect();
-    const style = window.getComputedStyle(firstCard);
-    const marginRight = parseFloat(style.marginRight || '0');
-    return rect.width + marginRight + 12; // approximate gap
-  }
-
-  slider.addEventListener('scroll', () => {
-    const cardWidth = getCardWidth();
-    if (!cardWidth) return;
-    const index = Math.round(slider.scrollLeft / cardWidth);
-    const clamped = Math.max(0, Math.min(index, cards.length - 1));
-    setActive(clamped);
-  });
-
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const index = Number(dot.dataset.index || '0');
+    slider.addEventListener('scroll', () => {
       const cardWidth = getCardWidth();
-      slider.scrollTo({
-        left: index * cardWidth,
-        behavior: 'smooth',
-      });
-      setActive(index);
+      if (!cardWidth) return;
+      const index = Math.round(slider.scrollLeft / cardWidth);
+      setActive(Math.max(0, Math.min(index, cards.length - 1)));
     });
-  });
 
-  setActive(0);
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const index = Number(dot.dataset.index || '0');
+        slider.scrollTo({ left: index * getCardWidth(), behavior: 'smooth' });
+        setActive(index);
+      });
+    });
+
+    setActive(0);
+  }
+
+  initSlider('peony-slider', 'peony-card', 'peony-dot');
+  initSlider('beijing-slider', 'beijing-card', 'beijing-dot');
 });
 

@@ -82,6 +82,41 @@ body {
   display: none;
 }
 
+.beijing-slider {
+  display: block;
+  padding: 0 20px;
+}
+
+.beijing-card {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fffdf8;
+  border: 1px solid rgba(126, 38, 57, 0.1);
+  box-shadow: 0 2px 12px rgba(126, 38, 57, 0.06);
+  transform: scale(1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  margin-bottom: 16px;
+}
+
+.beijing-card:last-child {
+  margin-bottom: 0;
+}
+
+.beijing-card.active {
+  border-color: rgba(126, 38, 57, 0.3);
+  box-shadow: 0 8px 30px rgba(126, 38, 57, 0.18);
+}
+
+.beijing-dots {
+  display: none;
+}
+
+.beijing-dot,
+.beijing-dot.active {
+  display: none;
+}
+
 @keyframes pulse {
   0%,
   100% {
