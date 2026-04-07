@@ -2260,32 +2260,9 @@
         btn.disabled = true;
         btn.style.opacity = '0.6';
         try {
-          // 第一步：用视觉模型分析人物特征
-          document.querySelector('#imageLoading p').textContent = 'AI 正在分析您的特征…';
-          const visionResp = await fetch('https://ark.cn-beijing.volces.com/api/v3/chat/completions', {
-            method: 'POST',
-            headers: {
-              'Authorization': 'Bearer ' + ARK_API_KEY,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              model: 'doubao-seed-2-0-pro-260215',
-              messages: [{
-                role: 'user',
-                content: [
-                  { type: 'text', text: '请分析图中人物的年龄段、性别、面部特征、气质风格，用简洁的中文描述，100字以内，不要分点，直接描述。' },
-                  { type: 'image_url', image_url: { url: portraitImageDataUrl } }
-                ]
-              }]
-            })
-          });
-          const visionData = await visionResp.json();
-          if (!visionResp.ok) throw new Error(visionData.error?.message || `分析失败 HTTP ${visionResp.status}`);
-          const personDesc = visionData.choices?.[0]?.message?.content || '';
-
-          // 第二步：生成写真图片
           document.querySelector('#imageLoading p').textContent = 'AI 正在生成写真，请稍候…';
-          const prompt = `帮我生成图片：人物特征描述：${personDesc}。根据该人物的年龄、性别、气质等特征，生成其与某种或某些品种和颜色的牡丹花的写真照，为其从唐制、宋制、明制汉服中选择其一，定制一整套服装、古风发型、头饰、耳饰、妆容、动作、手持物等，同时更换新的更合适的古风场景，且一定不能更改人物的五官特征及其分布。要求具备一定的美学水平，画面和谐生动。8K分辨率，6寸照片。`;
+          const base64 = portraitImageDataUrl.split(',')[1];
+          const prompt = `帮我生成图片：根据参考图人物的年龄、性别、气质等特征，生成其与某种或某些品种和颜色的牡丹花的写真照，为其从唐制、宋制、明制汉服中选择其一，定制一整套服装、古风发型、头饰、耳饰、妆容、动作、手持物等，同时更换新的更合适的古风场景。要求具备一定的美学水平，画面和谐生动。8K分辨率，6寸照片。`;
           const genResp = await fetch('https://ark.cn-beijing.volces.com/api/v3/images/generations', {
             method: 'POST',
             headers: {
@@ -2295,10 +2272,9 @@
             body: JSON.stringify({
               model: 'doubao-seedream-4-5-251128',
               prompt: prompt,
-              sequential_image_generation: 'disabled',
+              subject_reference_images: [base64],
               response_format: 'url',
               size: '2K',
-              stream: false,
               watermark: true
             })
           });
