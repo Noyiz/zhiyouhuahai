@@ -2282,9 +2282,13 @@
           </div>
           <div id="imageResultContent" style="display:none;">
             <img id="generatedImage" src="" alt="AI 生成写真" style="width:100%; border-radius:16px; box-shadow:0 8px 32px rgba(126,38,57,0.2); display:block;">
-            <div style="display:flex; gap:10px; margin-top:14px;">
+            <div style="margin-top:16px;">
+              <p style="color:#6b4e55; font-size:12px; margin:0 0 6px 0; letter-spacing:1px;">调整提示词：</p>
+              <textarea id="portraitPrompt" style="width:100%; box-sizing:border-box; min-height:100px; padding:10px 12px; border:1px solid rgba(126,38,57,0.25); border-radius:10px; background:rgba(126,38,57,0.03); color:#4a2030; font-size:12px; line-height:1.7; resize:vertical; font-family:'Noto Sans SC',sans-serif; outline:none;"></textarea>
+            </div>
+            <div style="display:flex; gap:10px; margin-top:12px;">
               <button onclick="saveGeneratedImage()" style="flex:1; padding:12px; background:linear-gradient(135deg,#7e2639,#be3c5a); color:#f7da94; border:none; border-radius:10px; font-size:13px; letter-spacing:2px; cursor:pointer; font-family:'STKaiti','STSong','KaiTi',serif;">保存图片</button>
-              <button onclick="generateImage()" style="flex:1; padding:12px; background:rgba(126,38,57,0.08); color:#7e2639; border:1px solid rgba(126,38,57,0.3); border-radius:10px; font-size:13px; letter-spacing:2px; cursor:pointer; font-family:'STKaiti','STSong','KaiTi',serif;">再次生成</button>
+              <button onclick="generateImage()" style="flex:1; padding:12px; background:rgba(126,38,57,0.08); color:#7e2639; border:1px solid rgba(126,38,57,0.3); border-radius:10px; font-size:13px; letter-spacing:2px; cursor:pointer; font-family:'STKaiti','STSong','KaiTi',serif;">重新生成照片</button>
             </div>
           </div>
           <div id="imageError" style="display:none; padding:16px; background:rgba(126,38,57,0.06); border-radius:10px; border:1px solid rgba(126,38,57,0.2);">
@@ -2388,6 +2392,7 @@
 
       // ── 图片生成 Modal ──
       let portraitImageDataUrl = null;
+      const DEFAULT_PORTRAIT_PROMPT = `帮我生成图片：根据参考图（女性或男性）人物的年龄、性别、气质等特征，生成其与某种或某些品种和颜色的牡丹花的写真照，为其从唐制、宋制、明制汉服中选择其一，定制一整套服装、古风发型、头饰、耳饰、妆容、动作、手持物等，同时更换新的更合适的古风场景。要求具备一定的美学水平，画面和谐生动，且一定不能更改人物的五官特征及其分布。8K分辨率，6寸照片。`;
 
       function openImageModal() {
         const modal = document.getElementById('imageModal');
@@ -2410,6 +2415,7 @@
         document.getElementById('imageGenerateBtn').disabled = false;
         document.getElementById('imageGenerateBtn').style.opacity = '1';
         document.getElementById('imageResult').style.display = 'none';
+        document.getElementById('portraitPrompt').value = DEFAULT_PORTRAIT_PROMPT;
       }
       function handlePortraitImage(event) {
         const file = event.target.files[0];
@@ -2439,7 +2445,7 @@
         btn.style.opacity = '0.6';
         try {
           document.querySelector('#imageLoading p').textContent = 'AI 正在生成写真，请稍候…';
-          const prompt = `帮我生成图片：根据参考图（女性或男性）人物的年龄、性别、气质等特征，生成其与某种或某些品种和颜色的牡丹花的写真照，为其从唐制、宋制、明制汉服中选择其一，定制一整套服装、古风发型、头饰、耳饰、妆容、动作、手持物等，同时更换新的更合适的古风场景。要求具备一定的美学水平，画面和谐生动，且一定不能更改人物的五官特征及其分布。8K分辨率，6寸照片。`;
+          const prompt = (document.getElementById('portraitPrompt').value || '').trim() || DEFAULT_PORTRAIT_PROMPT;
           const genResp = await fetch('https://ark.cn-beijing.volces.com/api/v3/images/generations', {
             method: 'POST',
             headers: {
@@ -2465,6 +2471,8 @@
           resultContent.style.display = 'block';
           document.getElementById('generatedImage').src = url;
           document.getElementById('generatedImage').dataset.url = url;
+          const promptEl = document.getElementById('portraitPrompt');
+          if (!promptEl.value.trim()) promptEl.value = DEFAULT_PORTRAIT_PROMPT;
         } catch (err) {
           loadingEl.style.display = 'none';
           errorEl.style.display = 'block';
