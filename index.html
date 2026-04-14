@@ -2589,19 +2589,23 @@
         document.getElementById('flowerIdentifyBtn').disabled = true;
         document.getElementById('flowerIdentifyBtn').style.opacity = '0.6';
         const thinkingTips = [
-          'AI 正在识别中…',
           '分析花瓣形态…',
           '比对品种数据库…',
           '提取色系与花型特征…',
           '查阅养护资料…',
-          '生成识别报告…',
+          'AI 识别中…',
         ];
         let tipIdx = 0;
         const tipEl = document.querySelector('#flowerLoading p');
+        tipEl.textContent = thinkingTips[0];
         const tipTimer = setInterval(() => {
-          tipIdx = (tipIdx + 1) % thinkingTips.length;
+          tipIdx++;
+          if (tipIdx >= thinkingTips.length) {
+            clearInterval(tipTimer);
+            return;
+          }
           tipEl.textContent = thinkingTips[tipIdx];
-        }, 1800);
+        }, 2500);
         try {
           const resp = await fetch('https://ark.cn-beijing.volces.com/api/v3/chat/completions', {
             method: 'POST',
