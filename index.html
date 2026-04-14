@@ -2595,17 +2595,11 @@
           '查阅养护资料…',
           'AI 识别中…',
         ];
-        let tipIdx = 0;
         const tipEl = document.querySelector('#flowerLoading p');
         tipEl.textContent = thinkingTips[0];
-        const tipTimer = setInterval(() => {
-          tipIdx++;
-          if (tipIdx >= thinkingTips.length) {
-            clearInterval(tipTimer);
-            return;
-          }
-          tipEl.textContent = thinkingTips[tipIdx];
-        }, 2500);
+        const tipTimers = thinkingTips.slice(1).map((tip, i) =>
+          setTimeout(() => { tipEl.textContent = tip; }, (i + 1) * 2500)
+        );
         try {
           const resp = await fetch('https://ark.cn-beijing.volces.com/api/v3/chat/completions', {
             method: 'POST',
@@ -2640,7 +2634,7 @@
           resultText.style.display = 'block';
           resultText.textContent = '识别失败：' + err.message;
         } finally {
-          clearInterval(tipTimer);
+          tipTimers.forEach(t => clearTimeout(t));
           document.getElementById('flowerIdentifyBtn').disabled = false;
           document.getElementById('flowerIdentifyBtn').style.opacity = '1';
         }
