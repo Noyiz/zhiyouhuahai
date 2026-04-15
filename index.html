@@ -2759,11 +2759,28 @@
       function saveGeneratedImage() {
         const img = document.getElementById('generatedImage');
         const url = img.dataset.url || img.src;
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'ai-写真-' + Date.now() + '.jpg';
-        a.target = '_blank';
-        a.click();
+        // 判断是否在微信中
+        const isWechat = /MicroMessenger/i.test(navigator.userAgent);
+        if (isWechat) {
+          // 微信环境：弹出全屏预览，引导长按保存
+          const overlay = document.createElement('div');
+          overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.92);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;';
+          overlay.innerHTML = `
+            <p style="color:#f7da94;font-size:14px;letter-spacing:2px;margin-bottom:16px;font-family:'STKaiti','STSong','KaiTi',serif;text-align:center;">长按下方图片即可保存到相册</p>
+            <img src="${url}" style="max-width:92%;max-height:72vh;border-radius:12px;object-fit:contain;" crossorigin="anonymous">
+            <button style="margin-top:20px;padding:10px 32px;background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:20px;font-size:13px;cursor:pointer;">关闭预览</button>
+          `;
+          overlay.querySelector('button').onclick = () => overlay.remove();
+          overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+          document.body.appendChild(overlay);
+        } else {
+          // 普通浏览器：直接下载
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'ai-写真-' + Date.now() + '.jpg';
+          a.target = '_blank';
+          a.click();
+        }
       }
 
       // 点击遮罩关闭
